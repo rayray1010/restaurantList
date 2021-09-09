@@ -28,6 +28,18 @@ app.get('/restaurants/:restaurant', (req, res) => {
   res.render('show', { restaurant })
 })
 
+//search
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  const containKeywordList = restaurantList.results.filter((restaurant) => {
+    return restaurant.name
+      .trim()
+      .toLocaleLowerCase()
+      .includes(keyword.trim().toLocaleLowerCase())
+  })
+  console.log(containKeywordList)
+  res.render('index', { restaurants: containKeywordList, keyword })
+})
 // listen sever
 app.listen(port, () => {
   console.log('本機伺服器啟動，路由為：http://localhost:3000')
