@@ -37,7 +37,6 @@ app.get('/search', (req, res) => {
       .toLocaleLowerCase()
       .includes(keyword.trim().toLocaleLowerCase())
   })
-  console.log(containKeywordList)
   res.render('index', { restaurants: containKeywordList, keyword })
 })
 // listen sever
