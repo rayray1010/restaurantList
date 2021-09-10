@@ -32,10 +32,16 @@ app.get('/restaurants/:restaurant', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const containKeywordList = restaurantList.results.filter((restaurant) => {
-    return restaurant.name
-      .trim()
-      .toLocaleLowerCase()
-      .includes(keyword.trim().toLocaleLowerCase())
+    return (
+      restaurant.name
+        .trim()
+        .toLocaleLowerCase()
+        .includes(keyword.trim().toLocaleLowerCase()) ||
+      restaurant.category
+        .trim()
+        .toLocaleLowerCase()
+        .includes(keyword.trim().toLocaleLowerCase())
+    )
   })
   res.render('index', { restaurants: containKeywordList, keyword })
 })

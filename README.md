@@ -2,7 +2,7 @@
 A demo web with express.js built
 ## Features
 + listing restaurants from movie api
-+ searching restaurants by tit
++ searching restaurants by title or category
 + click each page to check the detail
 
 ## Requirement
@@ -25,7 +25,7 @@ npm install
 npm run start
 ```
 
-## Example Pic
+## Example 
 ### Home Page
 ![Home-Page](public/image/home-page.png)
 ### Search Page
