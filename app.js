@@ -20,8 +20,8 @@ app.get('/', (req, res) => {
 })
 
 //show each page detail
-app.get('/restaurants/:restaurant', (req, res) => {
-  const restaurantId = req.params.restaurant
+app.get('/restaurants/:id', (req, res) => {
+  const restaurantId = req.params.id
   const restaurant = restaurantList.results.find((restaurant) => {
     return restaurant.id.toString() === restaurantId
   })
@@ -30,17 +30,11 @@ app.get('/restaurants/:restaurant', (req, res) => {
 
 //search
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
+  const keyword = req.query.keyword.trim().toLocaleLowerCase()
   const containKeywordList = restaurantList.results.filter((restaurant) => {
     return (
-      restaurant.name
-        .trim()
-        .toLocaleLowerCase()
-        .includes(keyword.trim().toLocaleLowerCase()) ||
-      restaurant.category
-        .trim()
-        .toLocaleLowerCase()
-        .includes(keyword.trim().toLocaleLowerCase())
+      restaurant.name.trim().toLocaleLowerCase().includes(keyword) ||
+      restaurant.category.trim().toLocaleLowerCase().includes(keyword)
     )
   })
   res.render('index', { restaurants: containKeywordList, keyword })
